@@ -1,0 +1,48 @@
+# Install virtualization components
+#
+# Bibliography:
+# * https://ubuntu.com/server/docs/virtualization-libvirt
+
+---
+- hosts: all
+  tasks:
+    - name: Install KVM
+      apt:
+        pkg: "{{ item }}"
+        state: present
+      loop:
+        - qemu-kvm
+        - virt-manager
+        # - libvirt-clients
+        - libvirt-daemon-system
+      become: yes
+
+    - name: Enable IOMMU
+      lineinfile:
+        state: present
+        dest: /etc/default/grub
+        backrefs: yes
+        regexp: '^(GRUB_CMDLINE_LINUX=(?!.*{{ item }})\"[^\"]*)(\".*)'
+        line: '\1 {{ item }}\2'
+      loop:
+        - intel_iommu=on
+      notify: Update Grub
+      become: yes
+
+    - name: Disabling Linux from owning certain hardware
+      copy:
+        src: kvm_modprobe_kvm.j2
+        dest: /etc/modprobe.d/kvm.conf
+        mode: 0644
+      notify: Update initramfs
+      become: yes
+
+
+  handlers:
+    - name: Update Grub
+      command: update-grub
+      become: yes
+
+    - name: Update initramfs
+      command: update-initramfs -u
+      become: yes

@@ -1,0 +1,5 @@
+# Note that "some_hostname" should be the name of the VM machine
+
+all:
+    some_hostname:
+      ansible_host: 192.1.2.3

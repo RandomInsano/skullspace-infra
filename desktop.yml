@@ -1,0 +1,14 @@
+# Install desktop components
+#
+
+---
+- hosts: all
+  tasks:
+    - name: Install packages
+      apt:
+        pkg: "{{ item }}"
+        state: present
+      loop:
+        - ubuntu-mate-core
+      become: yes
+

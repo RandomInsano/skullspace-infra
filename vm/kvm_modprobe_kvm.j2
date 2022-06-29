@@ -1,0 +1,15 @@
+# Managed by Ansible
+# =============================================================================
+# This file provides a list of hardware that should not be owned by the kernel
+# if we want to pass it to a virtual guest directly. 
+
+# Video Card example
+#alias pci:v000010DEd00001F82sv00001458sd00003FCDbc03sc00i00 vfio-pci
+
+# NVMe Drive example
+#alias pci:v000015B7d00005002sv000015B7sd00005002bc01sc08i02 vfio-pci
+
+# Video, Audio, NVME
+#options vfio-pci ids=10de:1f82,10de:10fa,15b7:5002 # New nvidia card
+#options vfio-pci disable_vga=1
+

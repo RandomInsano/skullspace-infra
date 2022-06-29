@@ -1,0 +1,14 @@
+# All the creature comforts for me!
+---
+- hosts: all
+  tasks:
+    - name: "Set localtime to Central"
+      file:
+        path: /etc/localtime
+        state: link
+        src: /usr/share/zoneinfo/America/Winnipeg
+    - name: "Populate timezone file"
+      copy:
+        dest: /etc/timezone
+        content: "America/Winnipeg\n"
+
