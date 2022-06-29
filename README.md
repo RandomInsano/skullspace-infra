@@ -47,7 +47,7 @@ loading so the hardware can instead be passed directly to a VM guest. Again,
 please give it a read so you can feel comfortable.
 
 ```
-ansible-playbook -bKi hosts [vm/kvm.yml](vm/kvm.yml)
+ansible-playbook -bKi hosts vm/kvm.yml
 ```
 
 ### A Desktop?
@@ -58,7 +58,7 @@ doesn't include one and you're on Ubuntu, you can run the "[desktop.yml](desktop
 to install a minimal version of Mate on Ubuntu. Up to you.
 
 ```
-ansible-playbook -bKi hosts [desktop.yml](desktop.yml)
+ansible-playbook -bKi hosts desktop.yml
 ```
 
 ### Great, Now What?
