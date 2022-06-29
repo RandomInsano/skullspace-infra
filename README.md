@@ -32,7 +32,7 @@ and will set the local timezone to Winnipeg/Central (please give it a read so
 it makes some sense.
 
 ```
-ansible-playbook -bKi hosts [timezone-central.yml](timezone-central.yml)
+ansible-playbook -bKi hosts timezone-central.yml
 ```
 
 You'll enter your local system password when prompted, and your SSH key password
