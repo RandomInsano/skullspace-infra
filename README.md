@@ -74,7 +74,7 @@ want to edit the script. You can run it like so (change "Windows2000" for a
 better name, but it can't have spaces):
 
 ```
-build-scripts\build-windows2000.sh Windows2000
+build-scripts/build-windows2000.sh Windows2000
 ```
 
 You'll have to wait a bit while it downloads and extracts. Also, if you cancel
