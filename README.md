@@ -67,3 +67,15 @@ Largely, that should be it. Reboot the machine and hopefully you're greeted with
 a login prompt. More steps will come as far as setting up a Windows XP VM and
 other pieces but for now, feel good about how little real work you needed to
 to here!
+
+There is a build script that automatically downloads Windows 2000 and builds
+a VM with a 4GB disk. You'll need to run it on the host to get a GUI unless you
+want to edit the script. You can run it like so (change "Windows2000" for a
+better name, but it can't have spaces):
+
+```
+build-scripts\build-windows2000.sh Windows2000
+```
+
+You'll have to wait a bit while it downloads and extracts. Also, if you cancel
+the extraction you'll need to delete the partial ISO in "/tmp"
