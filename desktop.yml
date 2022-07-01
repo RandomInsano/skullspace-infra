@@ -8,7 +8,18 @@
       apt:
         pkg: "{{ item }}"
         state: present
+        install_recommends: no
       loop:
         - ubuntu-mate-core
+        - lightdm
+        - lightdm-gtk-greeter
       become: yes
       when: is_desktop
+      notify: Start Desktop
+
+  # This is here so that we only start the service if packages were installed
+  handlers:
+    - name: Start Desktop
+      service:
+        name: gdm3
+        state: started

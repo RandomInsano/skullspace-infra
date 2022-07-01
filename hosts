@@ -1,6 +1,6 @@
 # Variables:
-#    desktop: means this machine will have a gui installed
-#    timezone: the timezone to assign to the machines
+#    is_desktop: means this machine will have a gui installed
+#    timezone:   the timezone to assign to the machines
 
 all:
   vars:
