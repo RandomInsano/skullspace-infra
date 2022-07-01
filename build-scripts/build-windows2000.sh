@@ -11,7 +11,9 @@ VM_MEDIA_STORE=/tmp
 VM_DISK_STORE=/var/lib/libvirt/images/
 TEMP_STORE=/tmp
 
-ISO_URL='https://dl.winworldpc.com/Abandonware%20Operating%20Systems/PC/Microsoft%20Windows/Windows%202000/Microsoft%20Windows%202000%20Professional%20(5.00.2195.6717.sp4).7z'
+MIRROR='https://dl.winworldpc.com'
+MIRROR='https://dl-alt1.winworldpc.com'
+ISO_URL="$MIRROR/Abandonware%20Operating%20Systems/PC/Microsoft%20Windows/Windows%202000/Microsoft%20Windows%202000%20Professional%20(5.00.2195.6717.sp4).7z"
 
 if [ -z "$1" ]; then
 	echo "Usage: $0 <vm name>"
