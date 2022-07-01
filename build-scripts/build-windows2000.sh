@@ -29,5 +29,12 @@ if [ ! -f "$VM_MEDIA_STORE/$ISO_NAME" ]; then
 	echo "Done!"
 fi
 
-virt-install --name "$1" --memory 128 --disk "$VM_DISK_STORE/$1.img",size=4 --video=cirrus --os-type=Windows --os-variant win2k --graphics spice --cdrom $VM_MEDIA_STORE/$ISO_NAME
+virt-install --name "$1" \
+	--memory 128 \
+	--disk "$VM_DISK_STORE/$1.img",size=4 \
+	--video=cirrus \
+	--os-type=Windows \
+	--os-variant win2k \
+	--graphics spice \
+	--cdrom $VM_MEDIA_STORE/$ISO_NAME
 
