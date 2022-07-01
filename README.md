@@ -5,6 +5,14 @@ This is the start of rebuilding some of our infrastructure with Ansible
 Playbooks, so come along and learn with us! Maybe deploy a hackerspace of your
 very own! :D
 
+### Inventories
+
+We keep the list of machines this playbooks operate on in the
+"[hosts](hosts)" file. You'll see in there that there are some groupings
+and variables, but most importantly there are machine names and IP addresses.
+These are just placeholders and don't represent the real machines so you'll have
+to go in and edit them. 
+
 ### Running Playbooks
 
 To run a playbook, we recommend running the following:
@@ -52,10 +60,11 @@ ansible-playbook -bKi hosts vm/kvm.yml
 
 ### A Desktop?
 
-It might be nice to have a desktop (we did actually install virt-manager which
-is a graphical way to manage virtual machines). If the OS install you have
-doesn't include one and you're on Ubuntu, you can run the "[desktop.yml](desktop.yml)"
-to install a minimal version of Mate on Ubuntu. Up to you.
+It might be nice to have a desktop (we did actually install virt-manager in the
+last step which is a graphical way to manage virtual machines). If the OS
+install you have doesn't include one and you're on Ubuntu, you can run the
+"[desktop.yml](desktop.yml)" to install a minimal version of Mate on Ubuntu.
+Up to you, but installing Windows without a GUI needs more work (open VNC ports)
 
 ```
 ansible-playbook -bKi hosts desktop.yml
@@ -79,3 +88,15 @@ build-scripts/build-windows2000.sh Windows2000
 
 You'll have to wait a bit while it downloads and extracts. Also, if you cancel
 the extraction you'll need to delete the partial ISO in "/tmp"
+
+### Next Time, Faster!
+
+Well, you've read the guide. Next time you come here just run this big blob:
+
+```
+ansible-playbook -bKi hosts \
+    timezone-central.yml \
+    vm/kvm.yml \
+    desktop.yml
+build-scripts/build-windows2000.sh Windows2000
+```
