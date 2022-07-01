@@ -1,5 +1,14 @@
-# Note that "some_hostname" should be the name of the VM machine
+# Variables:
+#    desktop: means this machine will have a gui installed
+#    timezone: the timezone to assign to the machines
 
 all:
-    some_hostname:
-      ansible_host: 192.1.2.3
+  vars:
+    timezone: "America/Winnipeg"
+  children:
+    vmhosts:
+      vars:
+        is_desktop: yes
+      hosts:
+        testbench.local:            # This is *usually* the name of the machine
+          ansible_host: 10.0.0.105  # This is only if DNS isn't expected to work

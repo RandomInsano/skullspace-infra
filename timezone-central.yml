@@ -6,9 +6,9 @@
       file:
         path: /etc/localtime
         state: link
-        src: /usr/share/zoneinfo/America/Winnipeg
+        src: "/usr/share/zoneinfo/{{ timezone }}"
     - name: "Populate timezone file"
       copy:
         dest: /etc/timezone
-        content: "America/Winnipeg\n"
+        content: "{{ timezone }}\n"
 

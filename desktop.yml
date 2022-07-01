@@ -11,4 +11,4 @@
       loop:
         - ubuntu-mate-core
       become: yes
-
+      when: is_desktop
