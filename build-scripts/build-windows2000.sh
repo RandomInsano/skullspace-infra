@@ -36,5 +36,6 @@ virt-install --name "$1" \
 	--os-type=Windows \
 	--os-variant win2k \
 	--graphics spice \
+	--clock localtime \
 	--cdrom $VM_MEDIA_STORE/$ISO_NAME
 
