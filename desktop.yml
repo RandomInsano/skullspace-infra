@@ -10,9 +10,13 @@
         state: present
         install_recommends: no
       loop:
-        - ubuntu-mate-core
-        - lightdm
-        - lightdm-gtk-greeter
+        - ubuntu-mate-core        # Core desktop wuth no recommended packages
+        - lightdm                 # Provide a login mechanism on boot
+        - lightdm-gtk-greeter     # Provide a login mechanism on boot
+        - mate-applet-brisk-menu  # Install the default start menu
+        - indicator-datetime      # Provide the clock
+        - indicator-power         # Show power (battery, etc)
+        - indicator-sound         # Offer sound settings
       become: yes
       when: is_desktop
       notify: Start Desktop
@@ -21,5 +25,5 @@
   handlers:
     - name: Start Desktop
       service:
-        name: gdm3
+        name: lightdm
         state: started
