@@ -5,6 +5,17 @@
 # You'll have to visit the site for the CD key and also run this on
 # the VM host to get proper graphics. Windows does not install
 # automatically
+#
+# Some notes:
+# * The product key is found at https://winworldpc.com/product/windows-nt-2000
+# * Because we're running Windows, the clock offset is needed
+# * Spice is faster than VNC
+# * Windows 2000 takes about 1 GB of disk space before compression
+# * RAM usage is 47 MB with Task Manager running, sans Balloon driver host uses 128 MB
+# * No reasonable Virtio/Qxl drivers seem to exist for Windows 2000?
+#
+# Bibliography
+# * https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md
 
 ISO_NAME=EN_WIN2000_PRO_SP4.ISO
 VM_MEDIA_STORE=/tmp
@@ -22,20 +33,24 @@ fi
 
 if [ ! -f "$VM_MEDIA_STORE/$ISO_NAME" ]; then
 	# Download the ISO (and continue the download if aborted or skip if exists)
-	echo "Downloading Windows 2000"
-	curl -#C - -o $TEMP_STORE/Windows2000_SP4.7z $ISO_URL
+	echo -n "Downloading Windows 2000... "
+	wget -qcO $TEMP_STORE/Windows2000_SP4.7z $ISO_URL
+	echo "Done!"
+
 	echo -n "Extracting... "
 	7z e -y -o"$VM_MEDIA_STORE" $TEMP_STORE/Windows2000_SP4.7z > /dev/null
 	echo "Done!"
 fi
 
 virt-install --name "$1" \
+	--autostart \
 	--memory 128 \
 	--disk "$VM_DISK_STORE/$1.img",size=4 \
 	--video=cirrus \
+	--network default,model=rtl8139 \
+	--sound ac97 \
 	--os-type=Windows \
 	--os-variant win2k \
 	--graphics spice \
-	--clock localtime \
-	--cdrom $VM_MEDIA_STORE/$ISO_NAME
-
+	--clock offset=localtime \
+	--cdrom $VM_MEDIA_STORE/$ISO_NAME \
