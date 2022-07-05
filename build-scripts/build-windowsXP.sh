@@ -36,7 +36,6 @@ wget -qcO $TEMP_STORE/virtio-win-drivers.iso $DRIVERS_ISO_URL
 wget -qcO $TEMP_STORE/virtio-win-drivers.vfd $DRIVERS_FLP_URL
 echo "Done!"
 
-
 virt-install --name "$1" \
 	--vcpus 1 \
 	--memory 512 \
