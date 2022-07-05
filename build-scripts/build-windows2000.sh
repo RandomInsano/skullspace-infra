@@ -13,9 +13,7 @@
 # * Windows 2000 takes about 1 GB of disk space before compression
 # * RAM usage is 47 MB with Task Manager running, sans Balloon driver host uses 128 MB
 # * No reasonable Virtio/Qxl drivers seem to exist for Windows 2000?
-#
-# Bibliography
-# * https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md
+
 
 ISO_NAME=EN_WIN2000_PRO_SP4.ISO
 VM_MEDIA_STORE=/tmp
@@ -54,3 +52,4 @@ virt-install --name "$1" \
 	--graphics spice \
 	--clock offset=localtime \
 	--cdrom $VM_MEDIA_STORE/$ISO_NAME \
+	--autostart

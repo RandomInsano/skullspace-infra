@@ -50,4 +50,5 @@ virt-install --name "$1" \
 	--os-variant winxp \
 	--graphics spice \
 	--clock offset=localtime \
-	--cdrom $ISO_PATH
+	--cdrom $ISO_PATH \
+	--autostart
