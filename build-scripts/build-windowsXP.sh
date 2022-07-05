@@ -26,9 +26,9 @@ if [ -z "$1" ]; then
 	exit 0
 fi
 
-if [ ! -f "$ISO_PATH" ]; then
+if [ ! -e "$ISO_PATH" ]; then
 	echo "Unable to find ISO at $ISO_PATH. Please provide one"
-	echo 1
+	exit 1
 fi
 
 echo -n "Downloading drivers... "
@@ -40,7 +40,7 @@ virt-install --name "$1" \
 	--vcpus 1 \
 	--memory 512 \
 	--disk "$VM_DISK_STORE/$1.img",size=8,bus=virtio \
-	--disk "/tmp/virtio-win_x86.vfd",device=floppy \
+	--disk "/tmp/virtio-win-drivers.vfd",device=floppy \
 	--disk "/tmp/virtio-win-drivers.iso",device=cdrom \
 	--video=qxl \
 	--network default,model=virtio \
