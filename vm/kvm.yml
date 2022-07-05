@@ -11,10 +11,10 @@
         pkg: "{{ item }}"
         state: present
       loop:
-        - qemu-kvm
-        - virt-manager
-        # - libvirt-clients
-        - libvirt-daemon-system
+        - qemu-kvm                # The actual virtualization tooling
+        - virt-manager            # A handy GUI that makes managing easier
+        - libvirt-daemon-system   # Auto-start virtualization on system boot
+        - p7zip-full              # Extract disk images in later stages
       become: yes
 
     - name: Enable IOMMU
